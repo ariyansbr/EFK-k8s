@@ -60,10 +60,15 @@ You can check kibana panel on assigned worker's IP port .
 # Metricbeat
 
 Metricbeat is a lightweight shipper installed on a server to periodically collect metrics from the host and services running. This represents the first pillar of observability to monitor our stack.
-Metricbeat captures by default system metrics but also includes a large list of modules to capture specific metrics about services such as proxy (NGINX), message bus (RabbitMQ, Kafka), Databases (MongoDB, MySQL, Redis) and many others.
+Metricbeat captures by default system metrics but also includes a large list of modules to capture specific metrics about services such as proxy (NGINX), message bus (RabbitMQ, Kafka), Databases (MongoDB, MySQL, Redis) and many others. First we need to install kube-state-metrics which is a service listening the Kubernetes API to exposes a set of useful metrics about the state of each Object.
+
+```
+kubectl create -f 5-1-kube-system-metric.yml
+```
+
 Let's deploy metricbeat with :
 ```
-kubectl create -f 5-metricbeat.yml
+kubectl create -f 5-2-metricbeat.yml
 ```
 
 # Filebeat
