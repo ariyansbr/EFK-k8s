@@ -70,19 +70,19 @@ data:
     # Import pre-existing dashboards
     setup.dashboards.enabled: true
 
-    # Configure indice lifecycle
+    # Configure index lifecycle
     setup.ilm:
-      policy_file: /etc/indice-lifecycle.json
+      policy_file: /etc/index-lifecycle.json
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: monitoring
-  name: metricbeat-indice-lifecycle
+  name: metricbeat-index-lifecycle
   labels:
     app: metricbeat
 data:
-  indice-lifecycle.json: |-
+  index-lifecycle.json: |-
     {
       "policy": {
         "phases": {
@@ -167,10 +167,10 @@ spec:
           mountPath: /etc/metricbeat.yml
           readOnly: true
           subPath: metricbeat.yml
-        - name: metricbeat-indice-lifecycle
-          mountPath: /etc/indice-lifecycle.json
+        - name: metricbeat-index-lifecycle
+          mountPath: /etc/index-lifecycle.json
           readOnly: true
-          subPath: indice-lifecycle.json
+          subPath: index-lifecycle.json
         - name: dockersock
           mountPath: /var/run/docker.sock
         - name: proc
@@ -193,10 +193,10 @@ spec:
         configMap:
           defaultMode: 0600
           name: metricbeat-config
-      - name: metricbeat-indice-lifecycle
+      - name: metricbeat-index-lifecycle
         configMap:
           defaultMode: 0600
-          name: metricbeat-indice-lifecycle
+          name: metricbeat-index-lifecycle
       - name: data
         hostPath:
           path: /var/lib/metricbeat-data
