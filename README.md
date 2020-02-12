@@ -6,7 +6,7 @@ Assuming that you know essential concept of EFK package and its target , lets st
 First of all we need create specific namespace .
 
 ``` 
-kubectl create namespace monitoring
+kubectl create namespace logging
 ```
 # ElasticSearch
 In this senario we decide run ElasticSearch cluster inside of Kubernetes cluster. First node of the cluster we're going to setup is the master which is responsible of controlling the cluster .

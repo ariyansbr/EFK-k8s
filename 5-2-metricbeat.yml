@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: metricbeat-config
   labels:
     app: metricbeat
@@ -77,7 +77,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: metricbeat-index-lifecycle
   labels:
     app: metricbeat
@@ -107,7 +107,7 @@ data:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: metricbeat
   labels:
     app: metricbeat
@@ -134,7 +134,7 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          value: elasticsearch-client.monitoring.svc.cluster.local
+          value: elasticsearch-client.logging.svc.cluster.local
         - name: ELASTICSEARCH_PORT
           value: "9200"
         - name: ELASTICSEARCH_USERNAME
@@ -145,7 +145,7 @@ spec:
               name: elasticsearch-pw-elastic
               key: password
         - name: KIBANA_HOST
-          value: kibana.monitoring.svc.cluster.local
+          value: kibana.logging.svc.cluster.local
         - name: KIBANA_PORT
           value: "5601"
         - name: NODE_NAME
@@ -209,7 +209,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: metricbeat
-  namespace: monitoring
+  namespace: logging
 roleRef:
   kind: ClusterRole
   name: metricbeat
@@ -248,7 +248,7 @@ rules:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: metricbeat
   labels:
     app: metricbeat

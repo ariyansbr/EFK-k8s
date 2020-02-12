@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: filebeat-config
   labels:
     app: filebeat
@@ -77,7 +77,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: filebeat-indice-lifecycle
   labels:
     app: filebeat
@@ -107,7 +107,7 @@ data:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: filebeat
   labels:
     app: filebeat
@@ -131,7 +131,7 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          value: elasticsearch-client.monitoring.svc.cluster.local
+          value: elasticsearch-client.logging.svc.cluster.local
         - name: ELASTICSEARCH_PORT
           value: "9200"
         - name: ELASTICSEARCH_USERNAME
@@ -142,7 +142,7 @@ spec:
               name: elasticsearch-pw-elastic
               key: password
         - name: KIBANA_HOST
-          value: kibana.monitoring.svc.cluster.local
+          value: kibana.logging.svc.cluster.local
         - name: KIBANA_PORT
           value: "5601"
         - name: NODE_NAME
@@ -200,12 +200,12 @@ spec:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: filebeat
 subjects:
 - kind: ServiceAccount
   name: filebeat
-  namespace: monitoring
+  namespace: logging
 roleRef:
   kind: ClusterRole
   name: filebeat
@@ -214,7 +214,7 @@ roleRef:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: filebeat
   labels:
     app: filebeat
@@ -231,7 +231,7 @@ rules:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: filebeat
   labels:
     app: filebeat

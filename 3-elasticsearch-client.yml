@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: elasticsearch-client-config
   labels:
     app: elasticsearch
@@ -27,7 +27,7 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: elasticsearch-client
   labels:
     app: elasticsearch
@@ -45,7 +45,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: elasticsearch-client
   labels:
     app: elasticsearch

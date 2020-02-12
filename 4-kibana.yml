@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: kibana-config
   labels:
     app: kibana
@@ -18,7 +18,7 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: kibana
   labels:
     app: kibana
@@ -33,7 +33,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: monitoring
+  namespace: logging
   name: kibana
   labels:
     app: kibana
@@ -55,7 +55,7 @@ spec:
           name: webinterface
         env:
         - name: ELASTICSEARCH_HOSTS
-          value: "http://elasticsearch-client.monitoring.svc.cluster.local:9200"
+          value: "http://elasticsearch-client.logging.svc.cluster.local:9200"
         - name: ELASTICSEARCH_USER
           value: "elastic"
         - name: ELASTICSEARCH_PASSWORD
