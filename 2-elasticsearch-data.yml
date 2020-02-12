@@ -21,8 +21,8 @@ data:
       data: true
       ingest: false
 
-    xpack.security.enabled: true
-    xpack.monitoring.collection.enabled: true
+    xpack.security.enabled: false
+    xpack.monitoring.collection.enabled: false
 ---
 apiVersion: v1
 kind: Service
