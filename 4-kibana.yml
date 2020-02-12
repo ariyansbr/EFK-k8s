@@ -59,10 +59,7 @@ spec:
         - name: ELASTICSEARCH_USER
           value: "elastic"
         - name: ELASTICSEARCH_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: elasticsearch-pw-elastic
-              key: password
+          value: "CHANGEME"
         volumeMounts:
         - name: config
           mountPath: /usr/share/kibana/config/kibana.yml
